@@ -47,7 +47,7 @@ int image_read(image_t* img, FILE* fin) {
     // allocate memory dynamically
     // the total size of the image --> width * height *sizeof each pixel
     // img -> img refers to; inside the img(the param) structure, find the member img(struct var). in other words, img
-    // -> data (gives me the ing data in the object)
+    // -> data (gives me the img data in the object)
     img->img = malloc(img->w * img->h * sizeof(pixel_t));
     if (img->img == NULL) {
         return -1;  // return -1 if malloc fails i.e returns null
@@ -55,7 +55,7 @@ int image_read(image_t* img, FILE* fin) {
 
     // now read the pixel data in row format
     // in R G B
-    for (int index = 0; index < img->w * img->h; index++) {
+    for (int index = 0; index < (img->w * img->h); index++) {
         if (fscanf(fin, "%d %d %d", &img->img[index].r, &img->img[index].g, &img->img[index].b) != 3) {
             free(img->img);  // free up the memory space allocated for the imaeg if the RGB pixels are not formatted
                              // correctly
