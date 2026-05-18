@@ -32,8 +32,8 @@ int image_read(image_t* img, FILE* fin) {
     if (fscanf(fin, "%2s", magicnum) != 1 || magicnum[0] != 'P' || magicnum[1] != '3') {
         return -1;
     }
-    //***********img -> w , is shorthand for (*img).w so im using the arrow syntax since its easier to type
-    //*****************/
+    // img -> w , is shorthand for (*img).w so im using the arrow syntax since its easier to type
+    //
     // in summary (*img).w refers to: follow the address stored in img and look for the w part of it
     int maxval;
     // collect the width height and maxval
@@ -48,6 +48,12 @@ int image_read(image_t* img, FILE* fin) {
     // the total size of the image --> width * height *sizeof each pixel
     // img -> img refers to; inside the img(the param) structure, find the member img(struct var). in other words, img
     // -> data (gives me the img data in the object)
+
+    // splint says that i gotta free the memory before i allocate it
+    if (img->img != NULL) {
+        free(img->img);   // release the old memory
+        img->img = NULL;  // clear the pointer to be safe
+    }
     img->img = malloc(img->w * img->h * sizeof(pixel_t));
     if (img->img == NULL) {
         return -1;  // return -1 if malloc fails i.e returns null

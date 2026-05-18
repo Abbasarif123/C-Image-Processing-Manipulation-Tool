@@ -60,7 +60,7 @@ void flood(image_t* img, int x, int y, pixel_t* target_color) {
         }
 
         // left
-        if (currentX - 1 < img->w) {
+        if (currentX - 1 < img->w && currentX - 1 >= 0) {
             int index = currentY * img->w + (currentX - 1);
             if (img->img[index].r == startcolour.r && img->img[index].g == startcolour.g &&
                 img->img[index].b == startcolour.b) {
@@ -71,7 +71,7 @@ void flood(image_t* img, int x, int y, pixel_t* target_color) {
             }
         }
         // down
-        if (currentY - 1 < img->h) {
+        if (currentY - 1 < img->h && currentY - 1 >= 0) {
             int index = (currentY - 1) * img->w + currentX;
             if (img->img[index].r == startcolour.r && img->img[index].g == startcolour.g &&
                 img->img[index].b == startcolour.b) {

@@ -24,7 +24,7 @@ void rotate_counterclockwise(image_t* img) {
     }
 
     for (int y = 0; y < oldheight; y++) {
-        for (int x = 0; x > oldwidth; x++) {
+        for (int x = 0; x < oldwidth; x++) {
             // map it counter clockwise
             // the new x is the old y
             // the new y is w-1-x
@@ -63,7 +63,7 @@ void rotate_clockwise(image_t* img) {
         return;
     }
     for (int y = 0; y < oldheight; y++) {
-        for (int x = 0; x > oldwidth; x++) {
+        for (int x = 0; x < oldwidth; x++) {
             int newx = oldheight - 1 - y;
             int newy = x;
 
@@ -128,7 +128,7 @@ void resize(image_t* img, int new_width, int new_height) {
     }
 
     for (int y = 0; y < new_height; y++) {
-        for (int x; x < new_width; x++) {
+        for (int x = 0; x < new_width; x++) {
             int newindex = y * new_width + x;  // new index format due to new dimensions
             int oldindex = y * img->w + x;
             // coordinate checking
